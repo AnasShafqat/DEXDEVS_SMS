@@ -45,8 +45,8 @@ class Fee extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'fee_id' => 'Fee ID',
-            'fee_std_id' => 'Fee Std ID',
+            'fee_id' => 'Fee',
+            'fee_std_id' => 'Fee',
             'fee_amount_received' => 'Fee Amount Received',
             'fee_description' => 'Fee Description',
             'fee_receiving_date' => 'Fee Receiving Date',

@@ -64,19 +64,19 @@ class Students extends \yii\db\ActiveRecord
     {
         return [
             'std_id' => 'Std ID',
-            'std_course_id' => 'Std Course ID',
-            'std_batch_id' => 'Std Batch ID',
-            'std_section_id' => 'Std Section ID',
-            'std_name' => 'Std Name',
-            'std_gaurdian_name' => 'Std Gaurdian Name',
-            'std_email' => 'Std Email',
-            'std_cnic' => 'Std Cnic',
-            'std_phone' => 'Std Phone',
-            'std_gaurdian_phone' => 'Std Gaurdian Phone',
-            'std_address' => 'Std Address',
-            'std_gender' => 'Std Gender',
-            'std_qualification' => 'Std Qualification',
-            'std_status' => 'Std Status',
+            'std_course_id' => 'Course',
+            'std_batch_id' => 'Batch',
+            'std_section_id' => 'Section',
+            'std_name' => 'Name',
+            'std_gaurdian_name' => 'Gaurdian Name',
+            'std_email' => 'Email',
+            'std_cnic' => 'Cnic',
+            'std_phone' => 'Phone',
+            'std_gaurdian_phone' => 'Gaurdian Phone',
+            'std_address' => 'Address',
+            'std_gender' => 'Gender',
+            'std_qualification' => 'Qualification',
+            'std_status' => 'Status',
         ];
     }
 
