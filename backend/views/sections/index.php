@@ -26,9 +26,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'section_id',
-            'section_course_id',
-            'section_batch_id',
+            //'section_id',
+            [
+                'attribute' => 'section_course_id',
+                'value' => 'sectionCourse.course_name',
+            ],
+            [
+                'attribute' => 'section_batch_id',
+                'value' => 'sectionBatch.batch_name',
+            ],
             'section_name',
             'section_status',
 

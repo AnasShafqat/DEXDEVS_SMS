@@ -18,8 +18,8 @@ class SectionsSearch extends Sections
     public function rules()
     {
         return [
-            [['section_id', 'section_course_id', 'section_batch_id'], 'integer'],
-            [['section_name', 'section_status'], 'safe'],
+            [['section_id'], 'integer'],
+            [['section_name', 'section_course_id', 'section_batch_id', 'section_status'], 'safe'],
         ];
     }
 
@@ -56,16 +56,19 @@ class SectionsSearch extends Sections
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinWith('sectionCourse');
+        $query->joinWith('sectionBatch');
+
 
         // grid filtering conditions
         $query->andFilterWhere([
             'section_id' => $this->section_id,
-            'section_course_id' => $this->section_course_id,
-            'section_batch_id' => $this->section_batch_id,
         ]);
 
         $query->andFilterWhere(['like', 'section_name', $this->section_name])
-            ->andFilterWhere(['like', 'section_status', $this->section_status]);
+            ->andFilterWhere(['like', 'section_status', $this->section_status])
+            ->andFilterWhere(['like', 'courses.course_name', $this->section_course_id])
+            ->andFilterWhere(['like', 'batches.batch_name', $this->section_batch_id]);
 
         return $dataProvider;
     }

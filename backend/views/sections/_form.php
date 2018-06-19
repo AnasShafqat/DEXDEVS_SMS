@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use backend\models\Courses;
+use backend\models\Batches;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Sections */
@@ -12,13 +15,19 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'section_course_id')->textInput() ?>
+    <?= $form->field($model, 'section_course_id')->dropDownList(
+    		ArrayHelper::map(Courses::find()->all(),'course_id','course_name'),
+    		['prompt'=>'Select Course']
+    )?>
 
-    <?= $form->field($model, 'section_batch_id')->textInput() ?>
+    <?= $form->field($model, 'section_batch_id')->dropDownList(
+    		ArrayHelper::map(Batches::find()->all(),'batch_id','batch_name'),
+    		['prompt'=>'Select Batch']
+    )?>
 
-    <?= $form->field($model, 'section_name')->dropDownList([ 'Morning' => 'Morning', 'Evening' => 'Evening', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'section_name')->dropDownList([ 'Morning' => 'Morning', 'Evening' => 'Evening', ], ['prompt' => 'Select Section']) ?>
 
-    <?= $form->field($model, 'section_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'section_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

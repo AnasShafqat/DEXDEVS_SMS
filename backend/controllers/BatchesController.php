@@ -4,6 +4,8 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Batches;
+use backend\models\Sections;
+use backend\models\Students;
 use backend\models\BatchesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,13 +67,27 @@ class BatchesController extends Controller
     public function actionCreate()
     {
         $model = new Batches();
+        $section = new Sections();
+        $student = new Students();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $section->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())){
+            $model->save();
+
+            $section->section_course_id = $model->batch_course_id;
+            $section->section_batch_id = $model->batch_id;
+            $section->save();
+
+            $student->std_course_id = $model->batch_course_id;
+            $student->std_batch_id = $model->batch_id;
+            $student->std_section_id = $section->section_id;
+            $student->save();
             return $this->redirect(['view', 'id' => $model->batch_id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'section' => $section,
+            'student' => $student,
         ]);
     }
 

@@ -18,8 +18,8 @@ class StudentsSearch extends Students
     public function rules()
     {
         return [
-            [['std_id', 'std_course_id', 'std_batch_id', 'std_section_id'], 'integer'],
-            [['std_name', 'std_gaurdian_name', 'std_email', 'std_cnic', 'std_phone', 'std_gaurdian_phone', 'std_address', 'std_gender', 'std_qualification', 'std_status'], 'safe'],
+            [['std_id'], 'integer'],
+            [['std_name', 'std_course_id', 'std_batch_id', 'std_section_id', 'std_gaurdian_name', 'std_email', 'std_photo', 'std_cnic', 'std_phone', 'std_gaurdian_phone', 'std_address', 'std_gender', 'std_qualification', 'std_status'], 'safe'],
         ];
     }
 
@@ -56,25 +56,29 @@ class StudentsSearch extends Students
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinWith('stdCourse');
+        $query->joinWith('stdBatch');
+        $query->joinWith('stdSection');
 
         // grid filtering conditions
         $query->andFilterWhere([
             'std_id' => $this->std_id,
-            'std_course_id' => $this->std_course_id,
-            'std_batch_id' => $this->std_batch_id,
-            'std_section_id' => $this->std_section_id,
         ]);
 
         $query->andFilterWhere(['like', 'std_name', $this->std_name])
             ->andFilterWhere(['like', 'std_gaurdian_name', $this->std_gaurdian_name])
             ->andFilterWhere(['like', 'std_email', $this->std_email])
+            ->andFilterWhere(['like', 'std_photo', $this->std_photo])
             ->andFilterWhere(['like', 'std_cnic', $this->std_cnic])
             ->andFilterWhere(['like', 'std_phone', $this->std_phone])
             ->andFilterWhere(['like', 'std_gaurdian_phone', $this->std_gaurdian_phone])
             ->andFilterWhere(['like', 'std_address', $this->std_address])
             ->andFilterWhere(['like', 'std_gender', $this->std_gender])
             ->andFilterWhere(['like', 'std_qualification', $this->std_qualification])
-            ->andFilterWhere(['like', 'std_status', $this->std_status]);
+            ->andFilterWhere(['like', 'std_status', $this->std_status])
+            ->andFilterWhere(['like', 'courses.course_name', $this->std_course_id])
+            ->andFilterWhere(['like', 'batches.batch_name', $this->std_batch_id])
+            ->andFilterWhere(['like', 'sections.section_name', $this->std_section_id]);;
 
         return $dataProvider;
     }

@@ -18,8 +18,8 @@ class BatchesSearch extends Batches
     public function rules()
     {
         return [
-            [['batch_id', 'batch_course_id'], 'integer'],
-            [['batch_name', 'batch_status'], 'safe'],
+            [['batch_id'], 'integer'],
+            [['batch_name', 'batch_course_id', 'batch_status'], 'safe'],
         ];
     }
 
@@ -56,15 +56,14 @@ class BatchesSearch extends Batches
             // $query->where('0=1');
             return $dataProvider;
         }
+        $query->joinWith('batchCourse');
 
         // grid filtering conditions
-        $query->andFilterWhere([
-            'batch_id' => $this->batch_id,
-            'batch_course_id' => $this->batch_course_id,
-        ]);
+    
 
         $query->andFilterWhere(['like', 'batch_name', $this->batch_name])
-            ->andFilterWhere(['like', 'batch_status', $this->batch_status]);
+            ->andFilterWhere(['like', 'batch_status', $this->batch_status])
+            ->andFilterWhere(['like', 'courses.course_name', $this->batch_course_id]) ;
 
         return $dataProvider;
     }

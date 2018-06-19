@@ -7,19 +7,27 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Students */
 
 $this->title = $model->std_id;
-$this->params['breadcrumbs'][] = ['label' => 'Students', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Students'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$photoInfo = $model->PhotoInfo;
+$photo = Html::img($photoInfo['url'],['alt'=>$photoInfo['alt']]);
+$options = ['data-lightbox'=>'profile image','data-title'=>$photoInfo['alt']];
 ?>
 <div class="students-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1><?= Html::encode($model->std_name) ?>'s Profile</h1>
 
+    <figure>
+        <?= Html::a($photo,$photoInfo['url'],$options); ?>
+        <!-- <figcaption>(Click to enlarge)</figcaption> -->
+    </figure>
+    <br>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->std_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->std_id], [
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->std_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->std_id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -35,6 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'std_name',
             'std_gaurdian_name',
             'std_email:email',
+            'std_photo',
             'std_cnic',
             'std_phone',
             'std_gaurdian_phone',

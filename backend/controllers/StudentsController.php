@@ -8,6 +8,7 @@ use backend\models\StudentsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * StudentsController implements the CRUD actions for Students model.
@@ -66,7 +67,18 @@ class StudentsController extends Controller
     {
         $model = new Students();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+                //get the instance of the upload file
+                $model->std_photo = UploadedFile::getInstance($model,'std_photo');
+                if(!empty($model->std_photo)){
+                    $imageName = $model->std_name.'_photo'; 
+                    $model->std_photo->saveAs('uploads/'.$imageName.'.'.$model->std_photo->extension);
+                    //save the path in the db column
+                    $model->std_photo = 'uploads/'.$imageName.'.'.$model->std_photo->extension;
+                } else {
+                   $model->std_photo = '0'; 
+                }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->std_id]);
         }
 
@@ -84,9 +96,21 @@ class StudentsController extends Controller
      */
     public function actionUpdate($id)
     {
+        $student = Yii::$app->db->createCommand("SELECT * FROM students where std_id = $id")->queryAll();
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+                //get the instance of the upload file
+                $model->std_photo = UploadedFile::getInstance($model,'std_photo');
+                if(!empty($model->std_photo)){
+                    $imageName = $model->std_name.'_photo'; 
+                    $model->std_photo->saveAs('uploads/'.$imageName.'.'.$model->std_photo->extension);
+                    //save the path in the db column
+                    $model->std_photo = 'uploads/'.$imageName.'.'.$model->std_photo->extension;
+                } else {
+                   $model->std_photo = $student[0]['std_photo']; 
+                }
+            $model->save();
             return $this->redirect(['view', 'id' => $model->std_id]);
         }
 
@@ -122,6 +146,6 @@ class StudentsController extends Controller
             return $model;
         }
 
-        throw new NotFoundHttpException('The requested page does not exist.');
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }

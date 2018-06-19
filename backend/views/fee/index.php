@@ -26,8 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'fee_id',
-            'fee_std_id',
+            //'fee_id',
+            [
+                'attribute' => 'fee_std_id',
+                'value' => 'feeStd.std_name',
+            ],
             'fee_amount_received',
             'fee_description',
             'fee_receiving_date',

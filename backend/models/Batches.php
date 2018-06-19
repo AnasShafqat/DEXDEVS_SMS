@@ -47,7 +47,7 @@ class Batches extends \yii\db\ActiveRecord
     {
         return [
             'batch_id' => 'Batch ID',
-            'batch_course_id' => 'Batch Course ID',
+            'batch_course_id' => 'Course Name',
             'batch_name' => 'Batch Name',
             'batch_status' => 'Batch Status',
         ];

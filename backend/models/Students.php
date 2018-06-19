@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "students".
@@ -14,6 +15,7 @@ use Yii;
  * @property string $std_name
  * @property string $std_gaurdian_name
  * @property string $std_email
+ * @property string $std_photo
  * @property string $std_cnic
  * @property string $std_phone
  * @property string $std_gaurdian_phone
@@ -45,15 +47,20 @@ class Students extends \yii\db\ActiveRecord
         return [
             [['std_course_id', 'std_batch_id', 'std_section_id', 'std_name', 'std_gaurdian_name', 'std_email', 'std_cnic', 'std_phone', 'std_gaurdian_phone', 'std_address', 'std_gender', 'std_qualification', 'std_status'], 'required'],
             [['std_course_id', 'std_batch_id', 'std_section_id'], 'integer'],
+            [['std_photo'],'safe'],
             [['std_gender', 'std_status'], 'string'],
             [['std_name', 'std_gaurdian_name'], 'string', 'max' => 32],
             [['std_email'], 'string', 'max' => 60],
+            [['std_photo'], 'string', 'max' => 200],
             [['std_cnic', 'std_phone', 'std_gaurdian_phone'], 'string', 'max' => 15],
             [['std_address'], 'string', 'max' => 256],
             [['std_qualification'], 'string', 'max' => 128],
             [['std_section_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sections::className(), 'targetAttribute' => ['std_section_id' => 'section_id']],
             [['std_course_id'], 'exist', 'skipOnError' => true, 'targetClass' => Courses::className(), 'targetAttribute' => ['std_course_id' => 'course_id']],
             [['std_batch_id'], 'exist', 'skipOnError' => true, 'targetClass' => Batches::className(), 'targetAttribute' => ['std_batch_id' => 'batch_id']],
+            [['std_photo'], 'image', 'extensions' => 'jpg',
+                 'minWidth' => 100, 'maxWidth' => 200,
+                 'minHeight' => 100, 'maxHeight' => 300,],
         ];
     }
 
@@ -63,20 +70,21 @@ class Students extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'std_id' => 'Std ID',
-            'std_course_id' => 'Std Course ID',
-            'std_batch_id' => 'Std Batch ID',
-            'std_section_id' => 'Std Section ID',
-            'std_name' => 'Std Name',
-            'std_gaurdian_name' => 'Std Gaurdian Name',
-            'std_email' => 'Std Email',
-            'std_cnic' => 'Std Cnic',
-            'std_phone' => 'Std Phone',
-            'std_gaurdian_phone' => 'Std Gaurdian Phone',
-            'std_address' => 'Std Address',
-            'std_gender' => 'Std Gender',
-            'std_qualification' => 'Std Qualification',
-            'std_status' => 'Std Status',
+            'std_id' => Yii::t('app', 'Std ID'),
+            'std_course_id' => Yii::t('app', 'Course Name'),
+            'std_batch_id' => Yii::t('app', 'Batch Name'),
+            'std_section_id' => Yii::t('app', 'Section Name'),
+            'std_name' => Yii::t('app', 'Std Name'),
+            'std_gaurdian_name' => Yii::t('app', 'Std Gaurdian Name'),
+            'std_email' => Yii::t('app', 'Std Email'),
+            'std_photo' => Yii::t('app', 'Std Photo'),
+            'std_cnic' => Yii::t('app', 'Std Cnic'),
+            'std_phone' => Yii::t('app', 'Std Phone'),
+            'std_gaurdian_phone' => Yii::t('app', 'Std Gaurdian Phone'),
+            'std_address' => Yii::t('app', 'Std Address'),
+            'std_gender' => Yii::t('app', 'Std Gender'),
+            'std_qualification' => Yii::t('app', 'Std Qualification'),
+            'std_status' => Yii::t('app', 'Std Status'),
         ];
     }
 
@@ -111,4 +119,21 @@ class Students extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Batches::className(), ['batch_id' => 'std_batch_id']);
     }
+
+    public function getPhotoInfo(){
+        $path = Url::to('@webroot/uploads/');
+        $url = Url::to('@web/uploads/');
+        $filename = strtolower($this->std_name).'_photo'.'.jpg';
+        $alt = $this->std_name."'s Profile Picture";
+
+        $imageInfo = ['alt'=>$alt];
+
+        if(file_exists($path.$filename)){
+            $imageInfo['url'] = $url.$filename; 
+        }  else {
+            $imageInfo['url'] = $url.'default.jpg';
+        }
+        return $imageInfo;
+    }
+
 }

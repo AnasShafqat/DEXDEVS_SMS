@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Sections;
+use backend\models\Students;
 use backend\models\SectionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,8 +66,10 @@ class SectionsController extends Controller
     public function actionCreate()
     {
         $model = new Sections();
+        $student = new Students();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && ) {
+            $model->save()
             return $this->redirect(['view', 'id' => $model->section_id]);
         }
 

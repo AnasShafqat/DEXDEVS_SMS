@@ -4,6 +4,9 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Courses;
+use backend\models\Batches;
+use backend\models\Sections;
+use backend\models\Students;
 use backend\models\CoursesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -65,13 +68,33 @@ class CoursesController extends Controller
     public function actionCreate()
     {
         $model = new Courses();
+        $batch = new Batches();
+        $section = new Sections();
+        $student = new Students();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+        if ($model->load(Yii::$app->request->post()) && $batch->load(Yii::$app->request->post()) && $section->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())) {
+            $model->save();
+
+            $batch->batch_course_id = $model->course_id;
+            $batch->save();
+
+            $section->section_course_id = $model->course_id;
+            $section->section_batch_id = $batch->batch_id;
+            $section->save();
+
+            $student->std_course_id = $model->course_id;
+            $student->std_batch_id = $batch->batch_id;
+            $student->std_section_id = $section->section_id;
+            $student->save();
             return $this->redirect(['view', 'id' => $model->course_id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'batch' => $batch,
+            'section' => $section,
+            'student' => $student,
         ]);
     }
 

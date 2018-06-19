@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel backend\models\StudentsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Students';
+$this->title = Yii::t('app', 'Students');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="students-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Students', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Students'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,15 +26,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'std_id',
-            'std_course_id',
-            'std_batch_id',
-            'std_section_id',
+            //'std_id',
+            [
+                'attribute' => 'std_course_id',
+                'value' => 'stdCourse.course_name',
+            ],
+            [
+                'attribute' => 'std_batch_id',
+                'value' => 'stdBatch.batch_name',
+            ],
+            [
+                'attribute' => 'std_section_id',
+                'value' => 'stdSection.section_name',
+            ],
             'std_name',
             //'std_gaurdian_name',
-            //'std_email:email',
-            //'std_cnic',
-            //'std_phone',
+            'std_email:email',
+            //'std_photo',
+            'std_cnic',
+            'std_phone',
             //'std_gaurdian_phone',
             //'std_address',
             //'std_gender',

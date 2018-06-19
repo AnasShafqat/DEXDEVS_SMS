@@ -48,8 +48,8 @@ class Sections extends \yii\db\ActiveRecord
     {
         return [
             'section_id' => 'Section ID',
-            'section_course_id' => 'Section Course ID',
-            'section_batch_id' => 'Section Batch ID',
+            'section_course_id' => 'Course Name',
+            'section_batch_id' => 'Batch Name',
             'section_name' => 'Section Name',
             'section_status' => 'Section Status',
         ];
