@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Courses */
@@ -12,14 +13,45 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+<<<<<<< HEAD
     <?= $form->field($model, 'course_name')->dropDownList([ 'Web Development' => 'Web Development', 'Graphic Designing' => 'Graphic Designing', 'MS Office' => 'MS Office', 'Android Development' => 'Android Development', ], ['prompt' => 'Select Course']) ?>
 
     <?= $form->field($model, 'course_starting_date')->textInput() ?>
+=======
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'course_name')->dropDownList([ 'Web Development' => 'Web Development', 'Graphic Designing' => 'Graphic Designing', 'MS Office' => 'MS Office', 'Android Development' => 'Android Development', ], ['prompt' => 'Select Course']) ?>        
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'course_starting_date')->textInput() ?>            
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'course_ending_date')->textInput() ?>        
+        </div>
+    </div>
+>>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
 
-    <?= $form->field($model, 'course_ending_date')->textInput() ?>
+    <div class="row">
+        <div class="col-md-4">
+            <?= $form->field($model, 'course_duration')->dropDownList([ '2 Months' => '2 Months', '3 Months' => '3 Months', '4 Months' => '4 Months', '5 Months' => '5 Months', ], ['prompt' => 'Select Course Duration']) ?>
+        </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'course_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Select Status']) ?>
+        </div>
+        <div class="col-md-4">
+            
+        </div>
+    </div>
 
-    <?= $form->field($model, 'course_duration')->dropDownList([ '2 Months' => '2 Months', '3 Months' => '3 Months', '4 Months' => '4 Months', '5 Months' => '5 Months', ], ['prompt' => '']) ?>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+            </div>
+        </div>
+    </div>
 
+<<<<<<< HEAD
     <?= $form->field($model, 'course_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
 
     <!-- Batch form begin -->
@@ -60,10 +92,11 @@ use yii\widgets\ActiveForm;
     <?= $form->field($student, 'std_qualification')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($student, 'std_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
+=======
+    
+>>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+    
 
     <?php ActiveForm::end(); ?>
 

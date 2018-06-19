@@ -54,7 +54,11 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         <img src="dist/img/anas.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
+<<<<<<< HEAD
                         <span>Welcome,<br><?= Yii::$app->user->identity->username ?></span>
+=======
+                        <span>Welcome,<br></span>
+>>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
                             <span style="color:white"></span><br>
                         <span style="color:#0DC143">* Online</span>
                     </div>
@@ -180,7 +184,8 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="dist/img/anas.jpg" alt=""><?= Yii::$app->user->identity->username ?>
+                                <img src="dist/img/anas.jpg" alt="">
+                                    admin
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

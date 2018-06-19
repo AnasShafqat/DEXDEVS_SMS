@@ -1,8 +1,12 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
+use yii\widgets\ActiveForm;
+<<<<<<< HEAD
+use yii\helpers\ArrayHelper;
+=======
+>>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
 use backend\models\Courses;
 
 /* @var $this yii\web\View */
@@ -14,13 +18,36 @@ use backend\models\Courses;
 
     <?php $form = ActiveForm::begin(); ?>
 
+<<<<<<< HEAD
     <?= $form->field($model, 'batch_course_id')->dropDownList(
     		ArrayHelper::map(Courses::find()->all(),'course_id','course_name'),
     		['prompt'=>'Select Course']
     )?>
+=======
+    <div class="row">
+    	<div class="col-md-4">
+	    	<?= $form->field($model, 'batch_course_id')->dropDownList(
+	        	ArrayHelper::map(Courses::find()->all(), 'course_id', 'course_name'),['prompt'=>'Select Course']
+		    ) ?>
+    	</div>
+    	<div class="col-md-4">
+    		<?= $form->field($model, 'batch_name')->textInput(['maxlength' => true]) ?>
+    	</div>
+    	<div class="col-md-4">
+    		<?= $form->field($model, 'batch_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => '']) ?>
+    	</div>
+    </div>
+>>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
 
-    <?= $form->field($model, 'batch_name')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+    	<div class="col-md-4">
+    		<div class="form-group">
+        		<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    		</div>
+    	</div>
+    	<div class="col-md-4">
 
+<<<<<<< HEAD
     <?= $form->field($model, 'batch_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
     <!-- Section form begin -->
     <h3><?= Html::encode('Create Section') ?></h3>
@@ -53,9 +80,12 @@ use backend\models\Courses;
     <?= $form->field($student, 'std_qualification')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($student, 'std_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
+=======
+    	</div>
+    	<div class="col-md-4">
+>>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    	</div>
     </div>
 
     <?php ActiveForm::end(); ?>
