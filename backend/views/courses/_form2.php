@@ -36,23 +36,6 @@ use dosamigos\datepicker\DatePicker;
             
         </div>
     </div>
-
-
-    <!-- Batch form begin -->
-    <h3><?= Html::encode('Create Batches') ?></h3>
-
-    <?= $form->field($batch, 'batch_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($batch, 'batch_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
-
-    <!-- Section form begin -->
-    <h3><?= Html::encode('Create Section') ?></h3>
-    
-    <?= $form->field($section, 'section_name')->dropDownList([ 'Morning' => 'Morning', 'Evening' => 'Evening', ], ['prompt' => 'Select Section']) ?>
-
-    <?= $form->field($section, 'section_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
-
-
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">

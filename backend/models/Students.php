@@ -70,23 +70,7 @@ class Students extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-<<<<<<< HEAD
-            'std_id' => Yii::t('app', 'Std ID'),
-            'std_course_id' => Yii::t('app', 'Course Name'),
-            'std_batch_id' => Yii::t('app', 'Batch Name'),
-            'std_section_id' => Yii::t('app', 'Section Name'),
-            'std_name' => Yii::t('app', 'Std Name'),
-            'std_gaurdian_name' => Yii::t('app', 'Std Gaurdian Name'),
-            'std_email' => Yii::t('app', 'Std Email'),
-            'std_photo' => Yii::t('app', 'Std Photo'),
-            'std_cnic' => Yii::t('app', 'Std Cnic'),
-            'std_phone' => Yii::t('app', 'Std Phone'),
-            'std_gaurdian_phone' => Yii::t('app', 'Std Gaurdian Phone'),
-            'std_address' => Yii::t('app', 'Std Address'),
-            'std_gender' => Yii::t('app', 'Std Gender'),
-            'std_qualification' => Yii::t('app', 'Std Qualification'),
-            'std_status' => Yii::t('app', 'Std Status'),
-=======
+
             'std_id' => 'Std ID',
             'std_course_id' => 'Course',
             'std_batch_id' => 'Batch',
@@ -101,7 +85,6 @@ class Students extends \yii\db\ActiveRecord
             'std_gender' => 'Gender',
             'std_qualification' => 'Qualification',
             'std_status' => 'Status',
->>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
         ];
     }
 

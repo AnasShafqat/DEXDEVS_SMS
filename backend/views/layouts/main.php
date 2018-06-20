@@ -54,11 +54,7 @@ $bundle = yiister\gentelella\assets\Asset::register($this);
                         <img src="dist/img/anas.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-<<<<<<< HEAD
                         <span>Welcome,<br><?= Yii::$app->user->identity->username ?></span>
-=======
-                        <span>Welcome,<br></span>
->>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
                             <span style="color:white"></span><br>
                         <span style="color:#0DC143">* Online</span>
                     </div>

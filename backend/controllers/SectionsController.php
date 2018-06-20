@@ -4,7 +4,6 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Sections;
-use backend\models\Students;
 use backend\models\SectionsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -66,10 +65,9 @@ class SectionsController extends Controller
     public function actionCreate()
     {
         $model = new Sections();
-        $student = new Students();
 
-        if ($model->load(Yii::$app->request->post()) && ) {
-            $model->save()
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->section_id]);
         }
 
@@ -97,6 +95,25 @@ class SectionsController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionSec($id){
+
+        $countSection = Sections::find()
+            ->where(['section_batch_id' => $id])
+            ->count();
+
+        $sections = Sections::find()
+            ->where(['section_batch_id' => $id])
+            ->all();
+
+        if($countSection > 0){
+            foreach ($sections as $section) {
+                echo "<option value='".$section->section_id."'>".$section->section_name."</option>";
+            }
+        }else{
+            echo "<option> - </option>";
+        }
+    } 
 
     /**
      * Deletes an existing Sections model.

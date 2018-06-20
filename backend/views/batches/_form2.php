@@ -27,15 +27,6 @@ use backend\models\Courses;
     		<?= $form->field($model, 'batch_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => '']) ?>
     	</div>
     </div>
-
-    	<div class="col-md-4">
-    <!-- Section form begin -->
-    <h3><?= Html::encode('Create Section') ?></h3>
-    
-    <?= $form->field($section, 'section_name')->dropDownList([ 'Morning' => 'Morning', 'Evening' => 'Evening', ], ['prompt' => 'Select Section']) ?>
-
-    <?= $form->field($section, 'section_status')->dropDownList([ 'Active' => 'Active', 'Inactive' => 'Inactive', ], ['prompt' => 'Status']) ?>
-    </div>
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">

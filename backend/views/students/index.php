@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-<<<<<<< HEAD
             //'std_id',
             [
                 'attribute' => 'std_course_id',
@@ -44,15 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //'std_gaurdian_name',
             'std_email:email',
             //'std_photo',
-=======
-        //    'std_id',
-        //    'std_batch_id',
-        //    'std_section_id',
-            'std_name',    
-            'std_course_id',
-            //'std_gaurdian_name',
-            //'std_email:email',
->>>>>>> e93bc8a7a355a2e014afa8bf66e334bbe8585b87
             'std_cnic',
             'std_phone',
             //'std_gaurdian_phone',

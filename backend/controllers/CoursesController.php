@@ -70,10 +70,8 @@ class CoursesController extends Controller
         $model = new Courses();
         $batch = new Batches();
         $section = new Sections();
-        $student = new Students();
 
-
-        if ($model->load(Yii::$app->request->post()) && $batch->load(Yii::$app->request->post()) && $section->load(Yii::$app->request->post()) && $student->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $batch->load(Yii::$app->request->post()) && $section->load(Yii::$app->request->post())) {
             $model->save();
 
             $batch->batch_course_id = $model->course_id;
@@ -83,10 +81,6 @@ class CoursesController extends Controller
             $section->section_batch_id = $batch->batch_id;
             $section->save();
 
-            $student->std_course_id = $model->course_id;
-            $student->std_batch_id = $batch->batch_id;
-            $student->std_section_id = $section->section_id;
-            $student->save();
             return $this->redirect(['view', 'id' => $model->course_id]);
         }
 
@@ -94,7 +88,6 @@ class CoursesController extends Controller
             'model' => $model,
             'batch' => $batch,
             'section' => $section,
-            'student' => $student,
         ]);
     }
 
@@ -108,8 +101,10 @@ class CoursesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $batch = new Batches();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save();
             return $this->redirect(['view', 'id' => $model->course_id]);
         }
 
